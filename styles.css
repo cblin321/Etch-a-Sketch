@@ -1,0 +1,38 @@
+.pixel-container {
+    display: grid;
+    max-width: 500px;
+    max-height: 500px;
+} 
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.1);
+    transition: all 0.4s ease-in-out;
+    visibility: hidden;
+    margin: auto;
+    z-index: 1000;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 30%;
+    flex-wrap: wrap;
+    background-color: white;
+    border-radius: 6px;
+    border: 2px black solid;
+}
+
+.open-popup {
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    position: fixed;
+    margin: auto;
+    visibility: visible;
+}
+
+.popup h1 {
+    display: block;
+}

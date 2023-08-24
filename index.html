@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="etch.js"></script>
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <main>
+        <div class="popup">
+            <h1>How many squares would you like?</h1>
+            <input type="text"/>
+            <button type="button" class="btn submit-square">Submit</button>
+        </div>
+        <div class="pixel-container"></div>
+        <button class="btn" id="size" type="button">Change Size</button>
+    </main>
+</body>
+    <script>
+        const pixels = initGrid(16);
+        const popup = document.querySelector(".popup");
+        const size = document.querySelector("#size");
+        const nSquares = document.querySelector('input[type="text"]');
+        size.addEventListener(("click"), (e) => {
+            popup.classList.add("open-popup");
+        });
+        const submit = document.querySelector(".submit-square");
+        submit.addEventListener("click", (e) => {
+            e.preventDefault();
+            //console.log(nSquares.value);
+            for (row of pixels) {
+                for (element of row)
+                    element.remove();
+            }
+            pixels = initGrid(nSquares.value);
+            popup.classList.remove("open-popup");
+        });
+    </script>
+</html>
