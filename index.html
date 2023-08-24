@@ -9,33 +9,52 @@
 </head>
 <body>
     <main>
+        <div class="overlay"></div>
         <div class="popup">
             <h1>How many squares would you like?</h1>
             <input type="text"/>
-            <button type="button" class="btn submit-square">Submit</button>
+            <div class="center">
+                <button type="button" class="btn submit-square">Submit</button>
+            </div>
         </div>
-        <div class="pixel-container"></div>
-        <button class="btn" id="size" type="button">Change Size</button>
+        <div class="center">
+            <div class="pixel-container"></div>
+        </div>
+        <div class="center">
+            <button class="btn controls" id="size" type="button">Change Size</button>
+            <button class="btn controls" id="rainbow" type="button"> Toggle Rainbow Mode</button>
+        </div>
     </main>
 </body>
     <script>
-        const pixels = initGrid(16);
+        let n = 16;
+        let pixels = initGrid(n, false);
         const popup = document.querySelector(".popup");
         const size = document.querySelector("#size");
         const nSquares = document.querySelector('input[type="text"]');
+        const overlay = document.querySelector(".overlay");
+        const rainbow = document.querySelector("#rainbow");
+        let rainbowState = false;
+        rainbow.addEventListener(("click"), (e) => {
+            rainbowState = !rainbowState;
+            console.log(rainbowState);
+            rainbowMode(pixels, rainbowState);
+        });
         size.addEventListener(("click"), (e) => {
             popup.classList.add("open-popup");
+            overlay.style.display = "block";
         });
         const submit = document.querySelector(".submit-square");
         submit.addEventListener("click", (e) => {
             e.preventDefault();
-            //console.log(nSquares.value);
             for (row of pixels) {
                 for (element of row)
                     element.remove();
             }
-            pixels = initGrid(nSquares.value);
+            n = parseFloat(nSquares.value)
+            pixels = initGrid(n, rainbowState);
             popup.classList.remove("open-popup");
+            overlay.style.display = "none";
         });
     </script>
 </html>

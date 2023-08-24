@@ -1,4 +1,4 @@
-function initGrid(n) {
+function initGrid(n, rainbow = false) {
     if (n <= 2 || n > 100) {
         alert("Too many squares, only 2-100");
         return;
@@ -13,13 +13,39 @@ function initGrid(n) {
             pixels[i][j] = div;
             container.appendChild(div);
             div.addEventListener(("mouseenter"), (e) => {
-                div.style.backgroundColor = "blue";
+                if (!rainbow)
+                    div.style.backgroundColor = "blue";
+                else {
+                    console.log("rainbow on");
+                }
             });
-            div.style.height = `calc(500px / ${n})`;
-            div.style.width = `calc(500px / ${n})`;
+            div.style.height = `calc(700px / ${n})`;
+            div.style.width = `calc(700px / ${n})`;
         }
     }
     container.style.gridTemplateColumns = `repeat(${n}, 1fr)`;
     container.style.gridTemplateRows = `repeat(${n}, 1fr)`;
     return pixels;
+}
+
+function rainbowMode(pixels, rainbowState) {
+    if (rainbowState) {
+        for (let i = 0; i < pixels.length; i++) {
+            for (let j = 0; j < pixels[i].length; j++) {
+                let div = pixels[i][j];
+                div.addEventListener(("mouseenter"), (e) => {
+                        div.style.backgroundColor = `rgb(${Math.random() * 253}, ${Math.random() * 253}, ${Math.random() * 253})`;
+                });
+            }
+        }
+    } else {
+        for (let i = 0; i < pixels.length; i++) {
+            for (let j = 0; j < pixels[i].length; j++) {
+                let div = pixels[i][j];
+                div.addEventListener(("mouseenter"), (e) => {
+                        div.style.backgroundColor = "blue";
+                });
+            }
+        }
+    }
 }
