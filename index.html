@@ -11,11 +11,18 @@
     <main>
         <div class="overlay"></div>
         <div class="popup">
-            <h1>How many squares would you like?</h1>
-            <input type="text"/>
             <div class="center">
-                <button type="button" class="btn submit-square">Submit</button>
-            </div>
+                <form class="form-group">
+                    <h1>Enter # squares in canvas</h1>
+                    <fieldset>
+                        <legend># Squares</legend>
+                        <input type="text"/>
+                    </fieldset>
+                    <div class="center" id="submit">
+                        <button type="submit" class="btn submit-square">Submit</button>
+                    </div>
+                </form>
+            </div>          
         </div>
         <div class="center">
             <div class="pixel-container"></div>
@@ -56,5 +63,6 @@
             popup.classList.remove("open-popup");
             overlay.style.display = "none";
         });
+        window.addEventListener("resize", resize);
     </script>
 </html>
